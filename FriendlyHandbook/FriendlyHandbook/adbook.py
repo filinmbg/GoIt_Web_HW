@@ -1,9 +1,24 @@
+from abc import ABC, abstractmethod
 from collections import UserDict
 from datetime import datetime
 from prompt_tool import Completer, RainbowLexer
 from prompt_toolkit import prompt
 import pickle
 import re
+
+
+class UserView(ABC):
+    @abstractmethod
+    def display(self):
+        pass
+
+
+class ContactsView(UserView):
+    def __init__(self, contacts):
+        self.contacts = contacts
+
+    def display(self):
+        pass
 
 
 class PhoneException(Exception):
@@ -301,10 +316,8 @@ def del_contact(user_input: str):
 
 
 def show_all(*args):
-    print("|{:^20}|{:^20}|{:^20}|{:^20}|".format("Name", "Phone", "Birthday", "Email"))
-    for k, v in AB.items():
-        print("|{:^19}".format(k), v)
-    return ""
+    contacts = [(name, record) for name, record in AB.items()]
+    return ContactsView(contacts)
 
 
 @input_error
@@ -412,15 +425,35 @@ def main():
             completer=Completer,
             lexer=RainbowLexer(),
         ).strip()
-        # user_input = input(">>> ")
         if user_input.lower() in ["good bye", "exit", "close"]:
             AB.save_ab()
             print("Good bye!")
             break
 
         result = command_parser(user_input)
+        if isinstance(result, UserView):
+            result.display()
+        else:
+            print(result)
 
-        print(result)
+
+# def main():
+#     print('Вас вітає книга контактів! Введіть команду чи "help" для допомоги')
+#     while True:
+#         user_input = prompt(
+#             ">>> ",
+#             completer=Completer,
+#             lexer=RainbowLexer(),
+#         ).strip()
+#         # user_input = input(">>> ")
+#         if user_input.lower() in ["good bye", "exit", "close"]:
+#             AB.save_ab()
+#             print("Good bye!")
+#             break
+
+#         result = command_parser(user_input)
+
+#         print(result)
 
 
 if __name__ == "__main__":
