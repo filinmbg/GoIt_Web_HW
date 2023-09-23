@@ -2,7 +2,9 @@ from calculator import calc
 from pathlib import Path
 from prompt_tool import Completer, RainbowLexer
 from prompt_toolkit import prompt
-import adbook, note_book, sort_folder
+import adbook
+import note_book
+import sort_folder
 
 
 def run_folder():

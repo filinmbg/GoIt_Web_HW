@@ -1,7 +1,7 @@
 import os
 import pickle
 from collections import UserDict
-from .prompt_tool import Completer, RainbowLexer
+from prompt_tool import Completer, RainbowLexer
 from prompt_toolkit import prompt
 
 

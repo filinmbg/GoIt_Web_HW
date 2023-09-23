@@ -1,7 +1,6 @@
-from abc import ABC, abstractmethod
 from collections import UserDict
 from datetime import datetime
-from .prompt_tool import Completer, RainbowLexer
+from prompt_tool import Completer, RainbowLexer
 from prompt_toolkit import prompt
 import pickle
 import re
@@ -19,17 +18,15 @@ class BDException(Exception):
     pass
 
 
-class Field(ABC):
-    def __init__(self, value):
+class Field:
+    def __init__(self, value) -> None:
         self.__private_value = None
         self.value = value
 
-    @abstractmethod
     @property
     def value(self):
         return self.__private_value
 
-    @abstractmethod
     @value.setter
     def value(self, value):
         self.__private_value = value
@@ -86,7 +83,7 @@ class Birthday(Field):
             Field.value.fset(self, value)
 
 
-class Record(ABC):
+class Record:
     def __init__(
         self,
         name: Name,
