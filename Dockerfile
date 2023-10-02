@@ -1,10 +1,9 @@
 # Docker-команда FROM вказує базовий образ контейнера
 # Наш базовий образ - це Linux з попередньо встановленим python-3.11
-FROM python:3.11-slim
+FROM python:3.11
 
 # Встановимо змінну середовища
-ENV APP_HOME /app
-
+ENV APP_HOME / FriendlyHandbook
 # Встановимо робочу директорію всередині контейнера
 WORKDIR $APP_HOME
 
