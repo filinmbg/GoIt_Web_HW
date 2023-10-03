@@ -22,4 +22,4 @@ COPY . .
 EXPOSE 5000
 
 # Запустимо наш застосунок всередині контейнера
-ENTRYPOINT ["python", "FriendlyHandbook/FriendlyHandbook/main.py"]
+ENTRYPOINT ["python", "FriendlyHandbook/main.py"]
